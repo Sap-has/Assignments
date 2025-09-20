@@ -1,0 +1,22 @@
+@main {
+  a: int = const 1;
+  b: int = const 2;
+  c: int = add a b;
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0}
+
+# ARGS: --analysis=rpo
+# OUT: Function main:
+# OUT: rpo: ['b0']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: []
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: True

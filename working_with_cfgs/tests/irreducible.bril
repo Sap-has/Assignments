@@ -1,0 +1,34 @@
+@main {
+  a: int = const 1;
+  br a .left .right;
+.left:
+  b: int = const 2;
+  jmp .loop1;
+.right:
+  c: int = const 3;
+  jmp .loop2;
+.loop1:
+  d: int = const 4;
+  br d .loop2 .end;
+.loop2:
+  e: int = const 5;
+  br e .loop1 .end;
+.end:
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0, 'left': 1, 'right': 1, 'loop1': 2, 'loop2': 2, 'end': 3}
+
+# ARGS: --analysis=rpo
+# OUT: Function main:
+# OUT: rpo: ['b0', 'left', 'loop1', 'loop2', 'end', 'right']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: [('loop1', 'loop2'), ('loop2', 'loop1')]
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: False

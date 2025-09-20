@@ -1,0 +1,22 @@
+@main {
+  a: int = const 1;
+.infinite:
+  a: int = add a 1;
+  jmp .infinite;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0, 'infinite': 1}
+
+# ARGS: --analysis=rpo
+# OUT: Function main:
+# OUT: rpo: ['b0', 'infinite']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: [('infinite', 'infinite')]
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: True

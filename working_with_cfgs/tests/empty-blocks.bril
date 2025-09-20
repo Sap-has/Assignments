@@ -1,0 +1,26 @@
+@main {
+  a: int = const 1;
+  br a .empty1 .empty2;
+.empty1:
+  jmp .end;
+.empty2:
+.end:
+  b: int = const 2;
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0, 'empty1': 1, 'empty2': 1, 'end': 2}
+
+# ARGS: --analysis=rpo
+# OUT: Function main:
+# OUT: rpo: ['b0', 'empty1', 'end', 'empty2']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: []
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: True

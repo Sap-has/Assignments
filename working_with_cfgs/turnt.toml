@@ -1,0 +1,14 @@
+[default]
+command = "bril2json < {filename} | python3 mycfg.py"
+
+[pathlen]
+command = "bril2json < {filename} | python3 mycfg.py --analysis=pathlen"
+
+[rpo]
+command = "bril2json < {filename} | python3 mycfg.py --analysis=rpo"
+
+[backedges]
+command = "bril2json < {filename} | python3 mycfg.py --analysis=backedges"
+
+[reducible]
+command = "bril2json < {filename} | python3 mycfg.py --analysis=reducible"

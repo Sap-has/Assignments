@@ -1,0 +1,34 @@
+@main {
+  a: int = const 1;
+  b: int = const 2;
+  br a .outer_then .outer_else;
+.outer_then:
+  c: int = const 3;
+  br b .inner_then .inner_else;
+.inner_then:
+  d: int = const 4;
+  jmp .end;
+.inner_else:
+  d: int = const 5;
+  jmp .end;
+.outer_else:
+  d: int = const 6;
+.end:
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0, 'outer_then': 1, 'outer_else': 1, 'inner_then': 2, 'inner_else': 2, 'end': 3}
+
+# ARGS: --analysis=rpo  
+# OUT: Function main:
+# OUT: rpo: ['b0', 'outer_then', 'inner_then', 'inner_else', 'outer_else', 'end']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: []
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: True

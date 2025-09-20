@@ -1,0 +1,45 @@
+@main {
+  a: int = const 1;
+  b: int = const 2;
+  br a .start .early_exit;
+.start:
+  x: int = const 0;
+.outer_loop:
+  x: int = add x 1;
+  br b .inner_branch .outer_continue;
+.inner_branch:
+  y: int = const 3;
+  br y .inner_loop .back_to_outer;
+.inner_loop:
+  y: int = add y 1;
+  br y .inner_loop .back_to_outer;
+.back_to_outer:
+  z: int = add x y;
+  jmp .outer_loop;
+.outer_continue:
+  w: int = const 4;
+  br w .final_branch .end;
+.final_branch:
+  result: int = add w x;
+  jmp .end;
+.early_exit:
+  result: int = const 0;
+.end:
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0, 'start': 1, 'early_exit': 1, 'outer_loop': 2, 'inner_branch': 3, 'outer_continue': 3, 'inner_loop': 4, 'back_to_outer': 4, 'final_branch': 4, 'end': 5}
+
+# ARGS: --analysis=rpo
+# OUT: Function main:
+# OUT: rpo: ['b0', 'start', 'outer_loop', 'inner_branch', 'inner_loop', 'back_to_outer', 'outer_continue', 'final_branch', 'end', 'early_exit']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: [('back_to_outer', 'outer_loop'), ('inner_loop', 'inner_loop')]
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: True

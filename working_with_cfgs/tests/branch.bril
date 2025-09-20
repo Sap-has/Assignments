@@ -1,0 +1,27 @@
+@main {
+  a: int = const 1;
+  br a .then .else;
+.then:
+  b: int = const 2;
+  jmp .end;
+.else:
+  b: int = const 3;
+.end:
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0, 'then': 1, 'else': 1, 'end': 2}
+
+# ARGS: --analysis=rpo
+# OUT: Function main:
+# OUT: rpo: ['b0', 'then', 'else', 'end']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: []
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: True

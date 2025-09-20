@@ -1,0 +1,28 @@
+@main {
+  i: int = const 0;
+  n: int = const 10;
+  jmp .check;
+.loop:
+  i: int = add i 1;
+.check:
+  cond: bool = lt i n;
+  br cond .loop .end;
+.end:
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0, 'loop': 1, 'check': 1, 'end': 2}
+
+# ARGS: --analysis=rpo
+# OUT: Function main:
+# OUT: rpo: ['b0', 'loop', 'check', 'end']
+
+# ARGS: --analysis=backedges
+# OUT: Function main:
+# OUT: backedges: [('check', 'loop')]
+
+# ARGS: --analysis=reducible
+# OUT: Function main:
+# OUT: reducible: True

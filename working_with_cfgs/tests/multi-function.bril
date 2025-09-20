@@ -1,0 +1,40 @@
+@helper(x: int): int {
+  a: int = add x 1;
+  br a .then .else;
+.then:
+  b: int = const 10;
+  ret b;
+.else:
+  b: int = const 20;
+  ret b;
+}
+
+@main {
+  x: int = const 5;
+  result: int = call @helper x;
+  ret;
+}
+
+# ARGS: --analysis=pathlen
+# OUT: Function helper:
+# OUT: pathlen: {'b0': 0, 'then': 1, 'else': 1}
+# OUT: Function main:
+# OUT: pathlen: {'b0': 0}
+
+# ARGS: --analysis=rpo
+# OUT: Function helper:
+# OUT: rpo: ['b0', 'then', 'else']
+# OUT: Function main:
+# OUT: rpo: ['b0']
+
+# ARGS: --analysis=backedges
+# OUT: Function helper:
+# OUT: backedges: []
+# OUT: Function main:
+# OUT: backedges: []
+
+# ARGS: --analysis=reducible
+# OUT: Function helper:
+# OUT: reducible: True
+# OUT: Function main:
+# OUT: reducible: True
