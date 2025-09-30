@@ -1,0 +1,15 @@
+@main {
+  i: int = const 0;
+  sum: int = const 0;
+.loop:
+  max: int = const 5;
+  cond: bool = lt i max;
+  br cond .body .end;
+.body:
+  sum: int = add sum i;
+  one: int = const 1;
+  i: int = add i one;
+  jmp .loop;
+.end:
+  print sum;
+}

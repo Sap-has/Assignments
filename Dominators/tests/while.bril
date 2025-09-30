@@ -1,0 +1,25 @@
+@main {
+
+i: int = const 0;
+
+.head:
+
+five: int = const 5;
+
+t: bool = lt i five;
+
+br t .body .exit;
+
+.body:
+
+one: int = const 1;
+
+i: int = add i one;
+
+jmp .head;
+
+.exit:
+
+print i;
+
+} 

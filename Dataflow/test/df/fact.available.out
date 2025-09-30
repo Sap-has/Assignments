@@ -1,0 +1,12 @@
+b1:
+  in:  ∅
+  out: ∅
+header:
+  in:  ∅
+  out: gt i zero
+body:
+  in:  gt i zero
+  out: mul result i, sub i one
+end:
+  in:  gt i zero
+  out: gt i zero

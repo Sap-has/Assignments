@@ -1,0 +1,3 @@
+b1:
+  in:  ∅
+  out: add a b, mul a b, add c d

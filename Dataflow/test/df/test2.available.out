@@ -1,0 +1,9 @@
+b1:
+  in:  ∅
+  out: gt x y
+then:
+  in:  gt x y
+  out: gt x y, add x y
+end:
+  in:  gt x y
+  out: gt x y

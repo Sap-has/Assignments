@@ -1,0 +1,12 @@
+b1:
+  in:  ∅
+  out: ∅
+loop:
+  in:  ∅
+  out: lt i max
+body:
+  in:  lt i max
+  out: add sum i, add i one
+end:
+  in:  lt i max
+  out: lt i max

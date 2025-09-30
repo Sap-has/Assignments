@@ -1,0 +1,12 @@
+b1:
+  in:  ∅
+  out: a.b1.0, b.b1.1, cond.b1.2
+left:
+  in:  a.b1.0, b.b1.1, cond.b1.2
+  out: a.b1.0, b.left.0, c.left.1, cond.b1.2
+right:
+  in:  a.b1.0, b.b1.1, cond.b1.2
+  out: a.right.0, b.b1.1, c.right.1, cond.b1.2
+end:
+  in:  a.b1.0, a.right.0, b.b1.1, b.left.0, c.left.1, c.right.1, cond.b1.2
+  out: a.b1.0, a.right.0, b.b1.1, b.left.0, c.left.1, c.right.1, cond.b1.2, d.end.0

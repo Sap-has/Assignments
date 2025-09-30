@@ -1,0 +1,11 @@
+@main {
+  x: int = const 10;
+  y: int = const 5;
+  cond: bool = gt x y;
+  br cond .then .end;
+.then:
+  z: int = add x y;
+  jmp .end;
+.end:
+  print x;
+}

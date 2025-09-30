@@ -1,0 +1,12 @@
+b1:
+  in:  ∅
+  out: ∅
+left:
+  in:  ∅
+  out: add x x
+right:
+  in:  ∅
+  out: mul x x
+merge:
+  in:  ∅
+  out: add y x

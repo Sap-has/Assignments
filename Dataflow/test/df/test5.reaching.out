@@ -1,0 +1,12 @@
+b1:
+  in:  ∅
+  out: x.b1.0, cond.b1.1
+left:
+  in:  x.b1.0, cond.b1.1
+  out: x.b1.0, cond.b1.1, y.left.0
+right:
+  in:  x.b1.0, cond.b1.1
+  out: x.b1.0, cond.b1.1, y.right.0
+merge:
+  in:  x.b1.0, cond.b1.1, y.left.0, y.right.0
+  out: x.b1.0, cond.b1.1, y.left.0, y.right.0, z.merge.0

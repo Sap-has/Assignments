@@ -1,0 +1,12 @@
+b1:
+  in:  ∅
+  out: result.b1.0, i.b1.1
+header:
+  in:  result.b1.0, result.body.0, i.b1.1, i.body.2
+  out: result.b1.0, result.body.0, i.b1.1, i.body.2, zero.header.0, cond.header.1
+body:
+  in:  result.b1.0, result.body.0, i.b1.1, i.body.2, zero.header.0, cond.header.1
+  out: result.body.0, i.body.2, zero.header.0, cond.header.1, one.body.1
+end:
+  in:  result.b1.0, result.body.0, i.b1.1, i.body.2, zero.header.0, cond.header.1
+  out: result.b1.0, result.body.0, i.b1.1, i.body.2, zero.header.0, cond.header.1

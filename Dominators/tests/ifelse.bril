@@ -1,0 +1,15 @@
+@main {
+x: bool = const True;
+br x .then .else;
+.then:
+y: int = const 2;
+jmp .join;
+.else:
+y: int = const 3;
+z: int = const 4;
+jmp .join;
+.join:
+one: int = const 1;
+w: int = add y one;
+print w;
+} 

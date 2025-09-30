@@ -1,0 +1,43 @@
+@main {
+
+i: int = const 0;
+
+one: int = const 1;
+
+.loop:
+
+three: int = const 3;
+
+t: bool = lt i three;
+
+br t .check .exit;
+
+.check:
+
+u: bool = eq i one;
+
+br u .then .else;
+
+.then:
+
+j: int = const 42;
+
+jmp .incr;
+
+.else:
+
+j: int = const 99;
+
+jmp .incr;
+
+.incr:
+
+i: int = add i one;
+
+jmp .loop;
+
+.exit:
+
+print i;
+
+} 

@@ -1,0 +1,14 @@
+@main {
+  x: int = const 10;
+  cond: bool = const true;
+  br cond .left .right;
+.left:
+  y: int = add x x;
+  jmp .merge;
+.right:
+  y: int = mul x x;
+  jmp .merge;
+.merge:
+  z: int = add y x;
+  print z;
+}
