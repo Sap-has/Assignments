@@ -6,7 +6,7 @@ loop:
   out: lt i max
 body:
   in:  lt i max
-  out: add sum i, add i one
+  out: add i one, add sum i
 end:
   in:  lt i max
   out: lt i max

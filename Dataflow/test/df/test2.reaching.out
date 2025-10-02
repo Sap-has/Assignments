@@ -1,9 +1,9 @@
 b1:
   in:  ∅
-  out: x.b1.0, y.b1.1, cond.b1.2
+  out: cond.b1.2, x.b1.0, y.b1.1
 then:
-  in:  x.b1.0, y.b1.1, cond.b1.2
-  out: x.b1.0, y.b1.1, cond.b1.2, z.then.0
+  in:  cond.b1.2, x.b1.0, y.b1.1
+  out: cond.b1.2, x.b1.0, y.b1.1, z.then.0
 end:
-  in:  x.b1.0, y.b1.1, cond.b1.2, z.then.0
-  out: x.b1.0, y.b1.1, cond.b1.2, z.then.0
+  in:  cond.b1.2, x.b1.0, y.b1.1, z.then.0
+  out: cond.b1.2, x.b1.0, y.b1.1, z.then.0

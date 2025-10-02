@@ -164,7 +164,7 @@ def get_expressions(block):
     
     for i, instr in enumerate(block):
         if instr.get("op") in ["add", "sub", "mul", "div", "eq", "lt", "gt", 
-                               "le", "ge", "ne", "and", "or"]:
+                               "le", "ge", "ne", "and", "or", "sum"]:
             if "args" in instr and len(instr["args"]) == 2:
                 expr = f"{instr['op']} {instr['args'][0]} {instr['args'][1]}"
                 generated.append((expr, i))
@@ -177,20 +177,24 @@ def get_expressions(block):
 
 def available_expr_transfer(block_name, block, in_vals):
     out_vals = set(in_vals)
+    generated_in_block = set()
     
     for instr in block:
-        if "dest" in instr:
-            var = instr["dest"]
-            out_vals = {
-                expr for expr in out_vals 
-                if var not in expr.split()[1:]
-            }
-        
+        generated_expr = None
         if instr.get("op") in ["add", "sub", "mul", "div", "eq", "lt", "gt", 
                                "le", "ge", "ne", "and", "or"]:
             if "args" in instr and len(instr["args"]) == 2:
                 expr = f"{instr['op']} {instr['args'][0]} {instr['args'][1]}"
+                generated_expr = expr
                 out_vals.add(expr)
+                generated_in_block.add(expr)
+        
+        if "dest" in instr:
+            var = instr["dest"]
+            out_vals = {
+                expr for expr in out_vals 
+                if expr in generated_in_block or var not in expr.split()[1:]
+            }
     
     return out_vals
 

@@ -2,11 +2,11 @@ b1:
   in:  ∅
   out: i.b1.0, sum.b1.1
 loop:
-  in:  i.b1.0, i.body.2, sum.b1.1, sum.body.0
-  out: i.b1.0, i.body.2, sum.b1.1, sum.body.0, max.loop.0, cond.loop.1
+  in:  cond.loop.1, i.b1.0, i.body.2, max.loop.0, one.body.1, sum.b1.1, sum.body.0
+  out: cond.loop.1, i.b1.0, i.body.2, max.loop.0, one.body.1, sum.b1.1, sum.body.0
 body:
-  in:  i.b1.0, i.body.2, sum.b1.1, sum.body.0, max.loop.0, cond.loop.1
-  out: sum.body.0, one.body.1, i.body.2, max.loop.0, cond.loop.1
+  in:  cond.loop.1, i.b1.0, i.body.2, max.loop.0, one.body.1, sum.b1.1, sum.body.0
+  out: cond.loop.1, i.body.2, max.loop.0, one.body.1, sum.body.0
 end:
-  in:  i.b1.0, i.body.2, sum.b1.1, sum.body.0, max.loop.0, cond.loop.1
-  out: i.b1.0, i.body.2, sum.b1.1, sum.body.0, max.loop.0, cond.loop.1
+  in:  cond.loop.1, i.b1.0, i.body.2, max.loop.0, one.body.1, sum.b1.1, sum.body.0
+  out: cond.loop.1, i.b1.0, i.body.2, max.loop.0, one.body.1, sum.b1.1, sum.body.0
